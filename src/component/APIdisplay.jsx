@@ -1,5 +1,9 @@
-import React, {useState} from 'react'
-import {useEffect} from 'react'
+import React, {useState, useEffect, createContext} from 'react'
+import {ContextDisplay}
+from './ContextDisplay'
+
+const UserContext = createContext()
+export {UserContext}
 
 export const APIdisplay = () => {
 
@@ -18,13 +22,15 @@ export const APIdisplay = () => {
 
   useEffect(() => {
     fetchData()
-  }, [setUser]) // only re render for change to user
+  }, [user]) // only re render for change to user
 
   const hasUser = () => Object
     .keys(user)
     .length > 0
 
-  return <div>{hasUser() && <p>Welcome, {user.name}. Your username is {user.username
-}
-    </p>}</div>
+  return (
+    <UserContext.Provider value={user}>
+      {hasUser() && <ContextDisplay/>}
+    </UserContext.Provider>
+  )
 }
