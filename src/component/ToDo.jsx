@@ -19,8 +19,7 @@ const reducer = (state, action) => {
         if (todo.id === action.id) {
           return {
             ...todo,
-            // complete: todo.complete
-            // complete: !todo.complete
+            complete: !todo.complete
           }
         } else {
           return todo
@@ -46,12 +45,10 @@ export const ToDo = () => {
           {todos.map(todo => (
             <div key={todo.id}>
               <label>
-                {/* <input
+                <input
                   type='checkbox'
                   checked={todo.complete}
-                  onChange={() => handleComplete(todo)}/>{' '} {todo.title} */}
-                  <input
-                  type='checkbox'/>{' '} {todo.title}
+                  onChange={() => handleComplete(todo)}/>{' '} {todo.title}
               </label>
             </div>
           ))}
